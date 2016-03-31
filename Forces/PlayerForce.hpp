@@ -20,16 +20,7 @@ public:
 
     bool isAlive(void) const;
 
-    template <typename T>
-    void addTower(TextureManager::Texture _texture, const zeno::Vector2i& _tilecoordinates) {
-        if (sTowerManager.addTower<T>(_texture, _tilecoordinates))
-        {
-            std::cout << "Tower placed, costing yoooo!" << std::endl;
-        }
-        else {
-            std::cout << "Could not place tower, not charged." << std::endl;
-        }
-    }
+    void createTower(const std::string& _towerName, const zeno::Vector2f& _position);
 
 private:
     unsigned int m_Health;

@@ -152,7 +152,7 @@ void Application::run(int _argc, char **_argv) {
                     if (event.mouseButton.button == zeno::Mouse::Left) {
                         zeno::Vector2i tileCoords = getTileCoordinates(zeno::Vector2f(event.mouseButton.x, m_Window.getSize().y - event.mouseButton.y));
 
-                        player.addTower<BasicTower>(TextureManager::Texture::TowerBasic, tileCoords);
+                        player.createTower("BasicTower", tileCoords);
                     }
                 }
             }

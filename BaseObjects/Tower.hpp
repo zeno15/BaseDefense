@@ -6,6 +6,7 @@
 #include <BaseObjects/Sprite.hpp>
 
 class Tower {
+friend class TowerManager;
 public:
     Tower(zeno::Texture& _texture, const zeno::Vector2f& _position, float _range, float _damage);
 

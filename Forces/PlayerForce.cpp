@@ -44,3 +44,13 @@ bool PlayerForce::isAlive(void) const
 {
     return m_Health > 0;
 }
+void PlayerForce::createTower(const std::string& _towerName, const zeno::Vector2f& _position)
+{
+    if (sTowerManager.createTower("BasicTower", _position))
+    {
+
+    }
+    else {
+        std::cout << "Could not create tower" << std::endl;
+    }
+}

@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <iostream>
+#include <functional>
 
 #include <Managers/TextureManager.hpp>
 
@@ -24,22 +25,7 @@ public:
 
     void render(const zeno::Mat4x4& _view, const zeno::Mat4x4& _projection);
 
-    template <typename T>
-    bool addTower(TextureManager::Texture _texture, const zeno::Vector2i& _tilecoordinates) {
-        zeno::Vector2f newTowerCoords = zeno::Vector2f(_tilecoordinates) * Application::TileSize + zeno::Vector2f(Application::TileSize, Application::TileSize) * 0.5f;
-
-        for (auto tower : m_Towers) {
-            if (newTowerCoords == tower->getPosition()) {
-                return false;
-            }
-        }
-
-        T *tower = new T(sTextureManager.getTexture(_texture), newTowerCoords);
-
-        m_Towers.push_back(tower);
-
-        return true;
-    }
+    bool createTower(const std::string& _towerName, const zeno::Vector2f& _position);
 
 private:
 
@@ -48,6 +34,8 @@ private:
     ~TowerManager(void);
 
     std::vector<Tower *> m_Towers;
+
+    std::vector<std::pair<std::string, std::function<Tower *(const zeno::Vector2f&)>>> m_TowerCreationMethods;
 };
 
 #define sTowerManager TowerManager::getInstance()
